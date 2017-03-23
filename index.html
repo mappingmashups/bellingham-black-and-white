@@ -49,7 +49,7 @@
 
       // initiate leaflet map
       map = new L.Map('cartodb-map', { 
-        center: [34.0522,-118.2437],
+        center: [48.76,-122.49],
         zoom: 14
       })
 
@@ -61,25 +61,25 @@
         "  line-width: 0;",
         "  line-opacity: 1;",
         "}",
-        "#lacounty_parcels [ shape_area <= 183259633.853] {",
+        "#lacounty_parcels [ shape_area <= 38391045] {",
         "   polygon-fill: #252525;",
         "}",
-        "#lacounty_parcels [ shape_area <= 18749.2191] {",
+        "#lacounty_parcels [ shape_area <= 42721] {",
         "   polygon-fill: #525252;",
         "}",
-        "#lacounty_parcels [ shape_area <= 9615.76605] {",
+        "#lacounty_parcels [ shape_area <= 17019] {",
         "   polygon-fill: #737373;",
         "}",
-        "#lacounty_parcels [ shape_area <= 7550.60995] {",
+        "#lacounty_parcels [ shape_area <= 11144] {",
         "   polygon-fill: #969696;",
         "}",
-        "#lacounty_parcels [ shape_area <= 6661.9965] {",
+        "#lacounty_parcels [ shape_area <= 8633] {",
         "   polygon-fill: #BDBDBD;",
         "}",
-        "#lacounty_parcels [ shape_area <= 5924.23825] {",
+        "#lacounty_parcels [ shape_area <= 6654] {",
         "   polygon-fill: #D9D9D9;",
         "}",
-        "#lacounty_parcels [ shape_area <= 5043.57735] {",
+        "#lacounty_parcels [ shape_area <= 4998] {",
         "   polygon-fill: #F7F7F7;",
         "}"
       ].join('\n');
@@ -92,25 +92,25 @@
         "  line-width: 0;",
         "  line-opacity: 1;",
         "}",
-        "#lariac_buildings_2008 [ shape_area <= 1507358.01989] {",
+        "#lariac_buildings_2008 [ shape_area <= 915602] {",
         "   polygon-fill: #F7F7F7;",
         "}",
-        "#lariac_buildings_2008 [ shape_area <= 3074.36767757] {",
+        "#lariac_buildings_2008 [ shape_area <= 2997] {",
         "   polygon-fill: #D9D9D9;",
         "}",
-        "#lariac_buildings_2008 [ shape_area <= 2379.88198146] {",
+        "#lariac_buildings_2008 [ shape_area <= 2276] {",
         "   polygon-fill: #BDBDBD;",
         "}",
-        "#lariac_buildings_2008 [ shape_area <= 1904.96072563] {",
+        "#lariac_buildings_2008 [ shape_area <= 1831] {",
         "   polygon-fill: #969696;",
         "}",
-        "#lariac_buildings_2008 [ shape_area <= 1424.7760669] {",
+        "#lariac_buildings_2008 [ shape_area <= 1440] {",
         "   polygon-fill: #737373;",
         "}",
-        "#lariac_buildings_2008 [ shape_area <= 830.578055424] {",
+        "#lariac_buildings_2008 [ shape_area <= 1045] {",
         "   polygon-fill: #525252;",
         "}",
-        "#lariac_buildings_2008 [ shape_area <= 437.62214556] {",
+        "#lariac_buildings_2008 [ shape_area <= 508] {",
         "   polygon-fill: #252525;",
         "}"
       ].join('\n');
@@ -211,10 +211,10 @@
 
       // Add parcels layer
       cartodb.createLayer(map, {
-        user_name: 'stamen-org',
+        user_name: 'mappingmashups',
         type: 'cartodb',
         sublayers: [{
-          sql: "SELECT * FROM lacounty_parcels",
+          sql: "SELECT * FROM bellingham_parcels AS lacounty_parcels",
           cartocss: parcels_style
         }]
       }, {
@@ -329,10 +329,10 @@
 */
       // Add buildings layer
       cartodb.createLayer(map, {
-        user_name: 'stamen-org',
+        user_name: 'mappingmashups',
         type: 'cartodb',
         sublayers: [{
-          sql: "SELECT * FROM lariac_buildings_2008 WHERE code = 'Building'",
+          sql: "SELECT *, shape_star AS shape_area FROM bellingham_buildings AS lariac_buildings_2008",
           cartocss: buildings_style
         }]
       }, {
@@ -452,7 +452,7 @@
   <div class="cartodb-overlay overlay-text desktop" style="z-index: 4; max-width: 500px; margin-left: 0px; margin-top: 0px; top: 55px; left: 66px; right: auto; bottom: auto; display: block; background-color: rgba(0, 0, 0, 0.701961);">
     <div class="content">
       <div class="text widget_text" style="z-index: 4; color: rgb(255, 255, 255); text-align: left; font-size: 20px;"><strong>
-        Los Angeles buildings and parcels
+        Bellingham buildings and parcels
       </strong></div>
     </div>
   </div>
